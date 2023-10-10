@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa</title>
+    <link rel="stylesheet" href="css/stylesheet.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+</head>
+<body>
+
+    <img src="images/frente/frente1.png" id="max">
+
+    <div id="map"></div>
+    
+    <script src="js/script.js"></script>
+
+    <script>
+       const max = document.getElementById('max')
+
+       const widthVw = window.innerWidth;
+       const heigthVh = window.innerHeight;
+
+       let PosiX = 200;
+       let PosiY = 50;
+
+       let imgNmr1 = 1;
+       let imgNmr2 = 1;
+       let imgNmr3 = 1;
+
+       document.addEventListener('keydown', (event) => {
+         const key = event.key
+
+         if(key === 's'){
+            PosiY += 5;
+            max.src = `images/frente/frente${imgNmr1}.png`
+         }
+         else if(key === 'w'){
+            PosiY -= 5;
+            max.src = `images/costa/costa${imgNmr3}.png`
+         }
+         else if(key === 'a'){
+            PosiX -= 5;
+            max.src = `images/esqueda/esquerda${imgNmr2}.png`
+         }
+         else if(key === 'd'){
+            PosiX += 5;
+            max.src = `images/direita/coruja${imgNmr2}.png`
+         }
+
+         imgNmr1 = (imgNmr1 % 6 ) + 1;
+         imgNmr2 = (imgNmr2 % 14) + 1;
+         imgNmr3 = (imgNmr3 % 9) + 1;
+
+        max.style.left = PosiX + 'px';
+        max.style.top = PosiY + 'px';
+       })
+
+
+
+    </script>
+
+    
+</body>
+</html>
